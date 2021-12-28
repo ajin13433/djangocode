@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <div style="padding-bottom: 2px;">
+        {% if solu.verdict == -1 %}
+        <h3></h3>
+        {% endif%}
+        {% if solu.verdict == 1 %}
+        <h3 style="text-align: center;padding:20px;background-color: rgb(47, 243, 168)">Solution Accepted</h3>
+        {% endif%}
+        {% if solu.verdict == 0 %}
+        <h3 style="text-align: center;padding:20px;background-color: rgb(212, 92, 92)">Try Again</h3>
+        {% endif%}
+        </div>
+      <h1>{{ quest.name|linebreaks }}</h1>
+      <br>
+      <h3>{{ quest.statement|linebreaks }}</h3>
+      <br>
+      <h3>Input<br>{{ quest.inputs|linebreaks }}</h3>
+      <br>
+      <h3>Output<br>{{ quest.outputs|linebreaks }}</h3>
+      <br>
+      <h3>Constraints<br>{{ quest.constrints|linebreaks }}</h3>
+      <br>
+      <h3>Examples{{ quest.examples|linebreaks }}</h3>
+      <form method="POST" action="{% url 'second_page' quest.id%}">
+         {% csrf_token %}
+        <h3>code here</h3>
+          <textarea name="code" id="" cols="100" rows="20"></textarea>
+          <br>
+          <button>submmit</button>
+        </form>
+     </div>
+  </div>
+</div>
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>
